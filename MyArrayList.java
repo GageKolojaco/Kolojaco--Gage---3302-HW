@@ -23,7 +23,7 @@ public class MyArrayList extends ADTList<String> {
     public void add(String item) {
     //    if (index < 0 || index > this.size()) // !!! copy pasted change later !!!
     //       throw new MyArrayListException("Index" + index +" is invalid for a list of " + size + " size.");
-        if (this.size() == firstArray.length){
+        if (this.size() == this.firstArray.length){
             String tempArray[] = new String[firstArray.length * 2];
             for (int i = 0; i < firstArray.length; i++){
                 tempArray[i] = firstArray[i];
@@ -41,13 +41,32 @@ public class MyArrayList extends ADTList<String> {
 
     @Override
     public String remove(int index) {
-        if (index < 0 || index >= this.size())
-            throw new MyArrayListException("Index" + index +" is invalid for a list of " + size + " size.");
-        for (int i = index + 1; i < this.size(); i++)
-            this.firstArray[i-1] = this.firstArray[i];
-
-        this.size++;
-        
+        String returnVal = null;
+        if ((this.size - 1) / this.firstArray.length <= 0.25){ // if we need to shrink the array
+            if (index > 0 || index <= this.size()){ // checking for valid index
+                returnVal = firstArray[index];
+                for (int i = index + 1; i < this.size(); i++)
+                    this.firstArray[i-1] = this.firstArray[i];
+            }
+            else{
+                String tempArray[] = new String[firstArray.length / 2];
+                for (int i = 0; i < this.size; i++)
+                tempArray[i] = firstArray[i];
+            } 
+            size--;
+            firstArray = tempArray;
+        }
+        else {
+            if (index > 0 || index <= this.size()){ // checking for valid index
+                returnVal = firstArray[index];
+                for (int i = index + 1; i < this.size(); i++)
+                    this.firstArray[i-1] = this.firstArray[i];// invalid index
+            else {} // !!! fix this later, invalid index in this case
+            size--;
+            
+        }
+        this.size--;
+        return returnVal;
     }
 
     @Override
