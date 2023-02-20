@@ -51,31 +51,46 @@ public class MyArrayList extends ADTList<String> {
 
         String returnVal = null;
 
-        if (index < 0 || index >= this.size())
+        if (index < 0 || index >= this.size()){
+
             throw new MyArrayListException("Index" + index +" is invalid for a list of " + size + " size.");
 
-        if ((this.size - 1) / this.firstArray.length <= 0.25){ // if we need to shrink the array
-            if (index > 0 || index <= this.size()){ // checking for valid index
-                returnVal = firstArray[index];
-                for (int i = index + 1; i < this.size(); i++)
-                    this.firstArray[i-1] = this.firstArray[i];
-            }
-            else{
-                String tempArray[] = new String[firstArray.length / 2];
-                for (int i = 0; i < this.size; i++)
-                tempArray[i] = firstArray[i];
-            } 
-            size--;
-            firstArray = tempArray;
         }
 
-        else {
+        if ((this.size - 1) / this.firstArray.length <= 0.25){ // if we need to shrink the array
+
             if (index > 0 || index <= this.size()){ // checking for valid index
+
+                returnVal = firstArray[index];
+                for (int i = index + 1; i < this.size(); i++){
+                    this.firstArray[i-1] = this.firstArray[i];
+                }
+
+                String tempArray[] = new String[firstArray.length / 2];
+                for (int i = 0; i < this.size; i++){
+                        tempArray[i] = firstArray[i];
+        
+                } 
+                firstArray = tempArray;
+                    size--;
+
+            }//if vALID
+
+        }//end of shrinking
+        
+
+        else {
+
+            if (index > 0 || index <= this.size()){ // checking for valid index
+
                 returnVal = firstArray[index];
                 for (int i = index + 1; i < this.size(); i++){
                     this.firstArray[i-1] = this.firstArray[i];// invalid index
+
                 }
-            else {} // !!! fix this later, invalid index in this case
+                
+           
+            
             size--;
             
         }
@@ -90,11 +105,14 @@ public class MyArrayList extends ADTList<String> {
 
         int stop = 0;
 
-         for (int i = 0; i < this.size; i++)
-            if(firstArray[i] == item && stop == 0){
+         for (int i = 0; i < this.size && stop == 0; i++){
+
+            if (firstArray[i] == item){
                 remove(i);
                 stop++;
             }
+        
+         }
 
     }
 
@@ -114,7 +132,7 @@ public class MyArrayList extends ADTList<String> {
 
         this.size = 2;
         this.firstArray = new String[INITIAL_SIZE];
-        
+
     }
 
    
