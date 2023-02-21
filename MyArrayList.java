@@ -28,8 +28,10 @@ public class MyArrayList extends ADTList<String> {
     @Override
     public void add(String item) {
 
+        String tempArray[];
+
         if (this.size() == this.firstArray.length){
-            String tempArray[] = new String[firstArray.length * 2];
+            tempArray = new String[firstArray.length * 2];
             for (int i = 0; i < firstArray.length; i++){
                 tempArray[i] = firstArray[i];
             }
@@ -39,7 +41,8 @@ public class MyArrayList extends ADTList<String> {
         }
 
         else{
-        //    tempArray[size] = item;
+
+            firstArray[size] = item;
             size++;
         }
 
@@ -49,7 +52,7 @@ public class MyArrayList extends ADTList<String> {
     @Override
     public String remove(int index) {
 
-        String returnVal = null;
+        String returnItem = null; // local variable used to return previous value
 
         if (index < 0 || index >= this.size()){ // exception handling
 
@@ -61,7 +64,7 @@ public class MyArrayList extends ADTList<String> {
 
             if (index > 0 || index <= this.size()){ // checking for valid index
 
-                returnVal = firstArray[index];
+                returnItem = firstArray[index];
                 for (int i = index + 1; i < this.size(); i++){
                     this.firstArray[i-1] = this.firstArray[i];
                 }
@@ -83,20 +86,20 @@ public class MyArrayList extends ADTList<String> {
 
             if (index > 0 || index <= this.size()){ // checking for valid index
 
-                returnVal = firstArray[index];
+                returnItem = firstArray[index];
                 for (int i = index + 1; i < this.size(); i++){
-                    this.firstArray[i-1] = this.firstArray[i];// invalid index
+                    this.firstArray[i-1] = this.firstArray[i];
 
                 }
 
-            } // end of validity
+            } // end of checking for validity
             
             this.size--;
             
         }
 
         this.size--;
-        return returnVal;
+        return returnItem;
 
     } // end of remove(int)
 

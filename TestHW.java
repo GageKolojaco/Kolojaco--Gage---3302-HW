@@ -1,10 +1,13 @@
 public class TestHW {
     public static void main(String[] args) {
-        MyArrayList arrayList = new MyArrayList();
+        MyArrayList testArrayList = new MyArrayList();
+
+        System.out.println(testArrayList);
+
         System.out.println("Testing HW;");
         System.out.println("Testing add:");
-        arrayList.add("Penis");
-        System.out.println(arrayList);
-        System.out.println(arrayList);
+        testArrayList.add("Penis");
+        System.out.println(testArrayList);
+        System.out.println(testArrayList);
     }
 }
