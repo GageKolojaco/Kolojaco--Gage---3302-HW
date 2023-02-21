@@ -9,21 +9,21 @@ public class MyArrayList extends ADTList<String> {
         this.firstArray = new String[INITIAL_SIZE];
         this.size = 0;
 
-    }
+    } // end of constructor
 
     @Override
     public boolean isEmpty() { // returns if the list is empty
 
         return (this.size == 0);
 
-    }
+    } // end of isEmpty()
 
     @Override
     public int size() { // returns the size of the list
 
         return this.size;
 
-    }
+    } // end of size()
 
     @Override
     public void add(String item) {
@@ -43,7 +43,7 @@ public class MyArrayList extends ADTList<String> {
             size++;
         }
 
-    }
+    } // end of add()
 
 
     @Override
@@ -98,7 +98,7 @@ public class MyArrayList extends ADTList<String> {
         this.size--;
         return returnVal;
 
-    }
+    } // end of remove(int)
 
     @Override
     public void remove(String item) {
@@ -127,7 +127,7 @@ public class MyArrayList extends ADTList<String> {
 
         return this.firstArray[index]; // return the element
 
-    }
+    } // end of get()
 
     @Override
     public void removeAll() { // resets "size" to 2 and generates a new list
@@ -135,8 +135,6 @@ public class MyArrayList extends ADTList<String> {
         this.size = 2;
         this.firstArray = new String[INITIAL_SIZE];
 
-    }
+    } // end of removeAll()
 
-   
-    
 }
