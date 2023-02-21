@@ -51,7 +51,7 @@ public class MyArrayList extends ADTList<String> {
 
         String returnVal = null;
 
-        if (index < 0 || index >= this.size()){
+        if (index < 0 || index >= this.size()){ // exception handling
 
             throw new MyArrayListException("Index" + index +" is invalid for a list of " + size + " size.");
 
@@ -74,12 +74,12 @@ public class MyArrayList extends ADTList<String> {
                 firstArray = tempArray;
                     size--;
 
-            }//if vALID
+            } // end of checking for validity
 
-        }//end of shrinking
+        } //end of shrinking
         
 
-        else {
+        else { // if we DON'T have to shrink
 
             if (index > 0 || index <= this.size()){ // checking for valid index
 
@@ -88,10 +88,10 @@ public class MyArrayList extends ADTList<String> {
                     this.firstArray[i-1] = this.firstArray[i];// invalid index
 
                 }
-                
-           
+
+            } // end of validity
             
-            size--;
+            this.size--;
             
         }
 
@@ -107,23 +107,25 @@ public class MyArrayList extends ADTList<String> {
 
          for (int i = 0; i < this.size && stop == 0; i++){
 
-            if (firstArray[i] == item){
+            if (firstArray[i] == item){ // if given item matches item in list
                 remove(i);
                 stop++;
-            }
+            } // end of matching
         
-         }
+         } // end of loop
 
-    }
+    } // end of remove(String)
 
     @Override
     public String get(int index) { // gets an element at a given index
 
-        if (index < 0 || index >= this.size()){
+        if (index < 0 || index >= this.size()){ // exception handling
+
             throw new MyArrayListException("Index" + index +" is invalid for a list of " + size + " size.");
+
         }
 
-        return this.firstArray[index];
+        return this.firstArray[index]; // return the element
 
     }
 
